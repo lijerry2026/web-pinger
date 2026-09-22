@@ -1,26 +1,22 @@
 
-name: Web Pinger
+name: Render Keep Alive
 
 on:
   schedule:
-    - cron: "*/5 * * * *"   # 每 5 分鐘執行一次
-  workflow_dispatch:         # 可手動執行
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
 
 jobs:
   ping:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 下載程式碼
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: 安裝 Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: 安裝套件
-        run: pip install -r requirements.txt
+      - run: pip install -r requirements.txt
 
-      - name: 執行 Ping
-        run: python ping.py
+      - run: python ping.py
